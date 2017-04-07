@@ -1,0 +1,21 @@
+.row
+  .col-xs-12.mb-2
+    h1 = Recipe.model_name.human(count: 2)
+
+.row
+  - @recipes.each do |recipe|
+    .col-sm-3.mb-2
+      .well.text-center
+        h3.mt-0 = recipe.name
+        p
+          strong> = Recipe.human_attribute_name(:serves)
+          = number_with_precision recipe.serves, strip_insignificant_zeros: true
+        .btn-group
+          = link_to 'Show', recipe, class: 'btn btn-info'
+          = link_to 'Edit', edit_recipe_path(recipe), class: 'btn btn-warning'
+          = link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+
+.row
+  .col-xs-12.mb-2
+    .well.text-center
+      = link_to 'New Recipe', new_recipe_path, class: 'btn btn-success'

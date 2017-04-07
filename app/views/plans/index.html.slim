@@ -1,0 +1,29 @@
+.row
+  .col-xs-12.mb-2
+    h1
+      = Plan.model_name.human(count: 2)
+
+.row
+  - @plans.each do |plan|
+    .col-sm-3.mb-2
+      .well.text-center
+        h3.mt-0 = plan.name
+        ul.list-unstyled
+          - plan.days.order(:position).each do |day|
+            li.mb-1
+              strong = day.name
+              - dinner_recipes = day.meals.where(slot: 'Dinner', edible_type: 'Recipe').collect(&:edible)
+              - if dinner_recipes.any?
+                ul.list-unstyled
+                  - dinner_recipes.each do |recipe|
+                    li = recipe.name
+
+        .btn-group
+          = link_to 'Show', plan, class: 'btn btn-info'
+          = link_to 'Edit', edit_plan_path(plan), class: 'btn btn-warning'
+          = link_to 'Destroy', plan, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+.row
+  .col-xs-12.col-mb-2
+    .well.text-center
+      = link_to new_plan_path, class: 'btn btn-success' do
+        = t '.add_plan'

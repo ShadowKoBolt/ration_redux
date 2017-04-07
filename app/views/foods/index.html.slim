@@ -1,0 +1,19 @@
+.row
+  .col-xs-12.mb-2
+    h1 = Food.model_name.human(count: 2)
+
+.row
+  - @foods.each do |food|
+    .col-sm-3.mb-2
+      .well.text-center
+        h3.mt-0
+          = food.name
+        p = food.unit
+        .btn-group
+          = link_to 'Edit', edit_food_path(food), class: 'btn btn-warning'
+          = link_to 'Destroy', food, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+
+.row
+  .col-xs-12.mb-2
+    .well.text-center
+      = link_to 'New Food', new_food_path, class: 'btn btn-success'

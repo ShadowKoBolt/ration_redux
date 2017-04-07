@@ -1,0 +1,20 @@
+p#notice= notice
+h1 Meals
+table
+  thead
+    tr
+      th Edible
+      th Day
+      th Slot
+      th Amount
+      th colspan="3"
+  tbody
+    - @meals.each do |meal|
+      tr
+        td= meal.edible.name
+        td= meal.day.position
+        td= meal.slot
+        td= meal.amount
+        td= link_to 'Show', [@plan, @day, meal]
+br/
+= link_to 'New Meal', new_plan_day_meal_path(@plan, @day)

@@ -1,0 +1,17 @@
+= form_with(model: recipe, local: true, class: 'form') do |f|
+  = render 'layouts/errors', errors: recipe.errors
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: 'form-control'
+  .form-group
+    = f.label :serves
+    = f.text_field :serves, class: 'form-control'
+
+  .row
+    .col-xs-6
+      = f.submit nil, class: 'btn btn-success'
+    .col-xs-6.text-right
+      .btn-group
+        - unless recipe.new_record?
+          = link_to 'Show', recipe, class: 'btn btn-info'
+        = link_to 'Back', recipes_path, class: 'btn btn-danger'

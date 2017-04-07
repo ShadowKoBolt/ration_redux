@@ -1,0 +1,24 @@
+@import "fonts";
+@import "colors";
+
+$body-bg: $purple-lighter;
+$brand-danger: $pink;
+$brand-success: $green;
+$brand-warning: $yellow;
+$font-family-sans-serif: 'Roboto', sans-serif;
+$navbar-default-bg: $purple;
+$navbar-default-link-color: $white;
+$navbar-default-link-hover-color: $white-dark;
+$text-color: $white;
+$well-bg: $purple-light;
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+@import "grid";
+@import "buttons";
+@import "inputs";
+@import "navbar";
+
+@import "layouts/application";
+@import "layouts/header";

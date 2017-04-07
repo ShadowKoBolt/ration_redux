@@ -1,0 +1,13 @@
+= form_with(model: plan, local: true, html: { class: 'form' }) do |f|
+  = render 'layouts/errors', errors: plan.errors
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: 'form-control'
+  .row
+    .col-xs-6
+      = f.submit nil, class: 'btn btn-success'
+    .col-xs-6.text-right
+      .btn-group
+        - unless @plan.new_record?
+          = link_to 'Show', @plan, class: 'btn btn-info'
+        = link_to 'Back', plans_path, class: 'btn btn-danger'

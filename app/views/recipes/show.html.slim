@@ -1,0 +1,31 @@
+.row
+  .col-xs-12.mb-2
+    h1 = @recipe.name
+
+.row
+  .col-xs-12
+    p
+      strong> = Recipe.human_attribute_name(:serves)
+      = number_with_precision @recipe.serves, strip_insignificant_zeros: true
+
+.row
+  - @recipe.ingredients.each do |ingredient|
+    .col-xs-3.mb-2
+      .well.text-center
+        h3.mt-0
+          = "#{number_with_precision ingredient.amount, strip_insignificant_zeros: true} #{ingredient.food.unit} #{ingredient.food.name}"
+        .btn-group
+          = link_to 'Edit', edit_recipe_ingredient_path(@recipe, ingredient), class: 'btn btn-warning'
+          = link_to 'Destroy', [@recipe, ingredient], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+
+
+.row
+  .col-xs-12.mb-2
+    .well.text-center
+      = link_to 'Add ingredient', new_recipe_ingredient_path(@recipe), class: 'btn btn-success'
+
+.row
+  .col-xs-12.mb-2
+    .btn-group
+      = link_to 'Edit', edit_recipe_path(@recipe), class: 'btn btn-warning'
+      = link_to 'Back', recipes_path, class: 'btn btn-danger'

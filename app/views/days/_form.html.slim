@@ -1,0 +1,9 @@
+= form_with(model: [@plan, day], local: true, class: 'form') do |f|
+  = render 'layouts/errors', errors: @plan.errors
+  .row
+    .col-xs-6
+      = f.submit nil, class: 'btn btn-success'
+    .col-xs-6.text-right
+      .btn-group
+        = link_to 'Show', [@plan, @day], class: 'btn btn-info'
+        = link_to 'Back', plan_days_path(@plan), class: 'btn btn-danger'

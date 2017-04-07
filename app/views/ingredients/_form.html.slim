@@ -1,0 +1,14 @@
+= form_with(model: [@recipe, ingredient], local: true, class: 'form') do |f|
+  = render 'layouts/errors', errors: ingredient.errors
+  .form-group
+    = f.label :food_id
+    = f.collection_select :food_id, current_user.foods, :id, :name_with_unit, {}, class: 'form-control'
+  .form-group
+    = f.label :amount
+    = f.text_field :amount, class: 'form-control'
+  .row
+    .col-xs-6
+      = f.submit nil, class: 'btn btn-success'
+    .col-xs-6.text-right
+      .btn-group
+        = link_to 'Back', recipe_ingredients_path(@recipe), class: 'btn btn-danger'

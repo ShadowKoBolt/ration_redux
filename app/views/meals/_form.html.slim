@@ -1,0 +1,20 @@
+= form_with(model: [@plan, @day, meal], local: true, class: 'form') do |f|
+  = render 'layouts/errors', errors: meal.errors
+  .form-group
+    = f.label :slot
+    = f.select :slot,  Meal::SLOTS, {}, class: 'form-control'
+  .form-group
+    = f.label :edible
+    = f.select :edible_type_and_id,
+      grouped_options_for_select({ 'Recipes' => current_user.recipes.map { |r| [r.name, r.type_and_id] }, 'Foods' => current_user.foods.map { |f| [f.name, f.type_and_id] } }, @meal.edible_type_and_id),
+      {},
+      class: 'form-control'
+  .form-group
+    = f.label :amount
+    = f.text_field :amount, class: 'form-control'
+  .row
+    .col-xs-6.mb-2
+      = f.submit nil, class: 'btn btn-success'
+    .col-xs-6.mb-2.text-right
+      .btn-group
+        = link_to 'Back', plan_day_meals_path(@plan, @day), class: 'btn btn-danger'

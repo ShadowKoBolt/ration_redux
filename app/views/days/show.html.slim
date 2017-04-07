@@ -1,0 +1,27 @@
+.row
+  .col-xs-12.mb-2
+    h1 #{@plan.name} - #{@day.name}
+
+.row
+  - Meal::SLOTS.each do |slot|
+    .col-sm-3.mb-2
+      .well.text-center
+        h3.mt-0 = slot
+        ul.list-group
+          - @day.meals.where(slot: slot).each do |meal|
+            li.list-group-item
+              p
+                = "#{number_with_precision meal.amount, strip_insignificant_zeros: true} #{meal.edible.name}"
+              .btn-group
+                = link_to 'Edit', edit_plan_day_meal_path(@plan, @day, meal), class: 'btn btn-warning'
+                = link_to 'Destroy', [@plan, @day, meal], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+.row
+  .col-xs-12.mb-2
+    .well.text-center
+      = link_to 'New meal', new_plan_day_meal_path(@plan, @day), class: 'btn btn-success'
+
+.row
+  .col-xs-12
+    .btn-group
+      = link_to 'Edit', edit_plan_day_path(@plan, @day), class: 'btn btn-warning'
+      = link_to 'Back', plan_days_path(@plan), class: 'btn btn-danger'

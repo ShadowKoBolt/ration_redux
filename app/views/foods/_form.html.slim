@@ -1,0 +1,14 @@
+= form_with(model: food, local: true, class: 'form') do |f|
+  = render 'layouts/errors', errors: food.errors
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: 'form-control'
+  .form-group
+    = f.label :unit
+    = f.text_field :unit, class: 'form-control'
+  .row
+    .col-xs-6
+      = f.submit nil, class: 'btn btn-success'
+    .col-xs-6.text-right
+      .btn-group
+        = link_to 'Back', foods_path, class: 'btn btn-danger'

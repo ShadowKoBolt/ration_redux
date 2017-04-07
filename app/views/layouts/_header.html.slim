@@ -1,0 +1,13 @@
+- if current_user
+  nav.navbar.navbar-default.navbar-static-top
+    .container
+      span.navbar-brand Ration Redux
+      ul.nav.navbar-nav.navbar-right
+        li
+          = link_to Plan.model_name.human(count: 2), plans_path
+        li
+          = link_to Recipe.model_name.human(count: 2), recipes_path
+        li
+          = link_to Food.model_name.human(count: 2), foods_path
+        li
+          = button_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-default navbar-btn'
