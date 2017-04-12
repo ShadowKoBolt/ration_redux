@@ -3,11 +3,11 @@
     .container
       span.navbar-brand Ration Redux
       ul.nav.navbar-nav.navbar-right
-        li
+        li class=active_class(:plans)
           = link_to Plan.model_name.human(count: 2), plans_path
-        li
+        li class=active_class(:recipes)
           = link_to Recipe.model_name.human(count: 2), recipes_path
-        li
+        li class=active_class(:foods)
           = link_to Food.model_name.human(count: 2), foods_path
         li
           = button_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-default navbar-btn'
