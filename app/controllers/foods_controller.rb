@@ -32,7 +32,7 @@ class FoodsController < ApplicationController
         format.json { render :show, status: :created, location: @food }
       else
         format.html { render :new }
-        format.json { render json: @food.errors, status: :unprocessable_entity }
+        format.json { render json: { errorMessages: @food.errors.full_messages, errors: @food.errors }, status: :unprocessable_entity }
       end
     end
   end

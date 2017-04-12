@@ -1,8 +1,9 @@
 = form_with(model: [@recipe, ingredient], local: true, class: 'form') do |f|
   = render 'layouts/errors', errors: ingredient.errors
-  .form-group
-    = f.label :food_id
-    = f.collection_select :food_id, current_user.foods, :id, :name_with_unit, {}, class: 'form-control'
+  = react_component 'FoodSelect',
+    foods: current_user.foods,
+    selectedFoodId: ingredient.food_id,
+    url: foods_path(format: :json)
   .form-group
     = f.label :amount
     = f.text_field :amount, class: 'form-control'
