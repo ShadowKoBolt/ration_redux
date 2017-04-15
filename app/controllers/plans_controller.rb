@@ -11,6 +11,7 @@ class PlansController < ApplicationController
   # GET /plans/1
   # GET /plans/1.json
   def show
+    @shopping_list = ShoppingList.new(@plan)
   end
 
   # GET /plans/new

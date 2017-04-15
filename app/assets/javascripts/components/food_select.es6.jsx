@@ -3,7 +3,7 @@ class FoodSelect extends React.Component {
     super(props);
     this.state = {
       foods: props.foods,
-      selectedFoodId: ""
+      selectedFoodId: props.selectedFoodId
     };
     this.handleChange = this.handleChange.bind(this);
     this.reloadOptionsAndSelect = this.reloadOptionsAndSelect.bind(this);
@@ -38,7 +38,7 @@ class FoodSelect extends React.Component {
 
   renderOptions () {
     return this.state.foods.map((food) =>
-      <option key={food.id} value={food.id}>{food.name}</option>
+      <option key={food.id} value={food.id}>{food.name} ({food.unit})</option>
     );
   }
 
@@ -46,7 +46,7 @@ class FoodSelect extends React.Component {
     if (this.state.selectedFoodId === "add") {
       return (
           <div className="well">
-            <FoodForm url={ this.props.url } reloadOptionsAndSelect={ this.reloadOptionsAndSelect } />
+            <FoodForm valueMethod="id" url={ this.props.url } reloadOptionsAndSelect={ this.reloadOptionsAndSelect } />
           </div>
       );
     }

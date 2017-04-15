@@ -2,7 +2,7 @@
   = render 'layouts/errors', errors: ingredient.errors
   = react_component 'FoodSelect',
     foods: current_user.foods,
-    selectedFoodId: ingredient.food_id,
+    selectedFoodId: (ingredient.food_id || ""),
     url: foods_path(format: :json)
   .form-group
     = f.label :amount

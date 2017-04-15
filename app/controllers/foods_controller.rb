@@ -5,11 +5,19 @@ class FoodsController < ApplicationController
   # GET /foods.json
   def index
     @foods = current_user.foods
+    respond_to do |format|
+      format.html {}
+      format.json { render json: @foods.as_json }
+    end
   end
 
   # GET /foods/1
   # GET /foods/1.json
   def show
+    respond_to do |format|
+      format.html {}
+      format.json { render json: @food }
+    end
   end
 
   # GET /foods/new
@@ -29,7 +37,7 @@ class FoodsController < ApplicationController
     respond_to do |format|
       if @food.save
         format.html { redirect_to foods_url, notice: 'Food was successfully created.' }
-        format.json { render :show, status: :created, location: @food }
+        format.json { render :show, status: :created, json: @food }
       else
         format.html { render :new }
         format.json { render json: { errorMessages: @food.errors.full_messages, errors: @food.errors }, status: :unprocessable_entity }
@@ -43,7 +51,7 @@ class FoodsController < ApplicationController
     respond_to do |format|
       if @food.update(food_params)
         format.html { redirect_to foods_url, notice: 'Food was successfully updated.' }
-        format.json { render :show, status: :ok, location: @food }
+        format.json { render :show, status: :ok, json: @food }
       else
         format.html { render :edit }
         format.json { render json: @food.errors, status: :unprocessable_entity }

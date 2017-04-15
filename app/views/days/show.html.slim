@@ -15,13 +15,8 @@
               .btn-group
                 = link_to 'Edit', edit_plan_day_meal_path(@plan, @day, meal), class: 'btn btn-warning'
                 = link_to 'Destroy', [@plan, @day, meal], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
-.row
-  .col-xs-12.mb-2
-    .well.text-center
-      = link_to 'New meal', new_plan_day_meal_path(@plan, @day), class: 'btn btn-success'
-
+        = link_to 'New meal', new_plan_day_meal_path(@plan, @day, meal: { slot: slot }), class: 'btn btn-success'
 .row
   .col-xs-12
     .btn-group
-      = link_to 'Edit', edit_plan_day_path(@plan, @day), class: 'btn btn-warning'
       = link_to 'Back', plan_days_path(@plan), class: 'btn btn-danger'

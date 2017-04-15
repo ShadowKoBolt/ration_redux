@@ -5,8 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :plans, dependent: :destroy
-  has_many :recipes, dependent: :destroy
-  has_many :foods, dependent: :destroy
+  has_many :recipes, -> { order(:name) }, dependent: :destroy
+  has_many :foods, -> { order(:name) }, dependent: :destroy
 
   def initial
     email[0..0].upcase

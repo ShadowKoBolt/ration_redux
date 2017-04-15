@@ -14,7 +14,7 @@ class FoodForm extends React.Component {
     $.post(this.props.url,
       { authenticity_token: authenticity_token, food: { name: this.state.name, unit: this.state.unit } },
     ).done(function(data) {
-      me.props.reloadOptionsAndSelect(data.id)
+      me.props.reloadOptionsAndSelect(data[me.props.valueMethod]);
     }).fail(function(data) {
       me.setState({ errors: data.responseJSON["errorMessages"] });
     });

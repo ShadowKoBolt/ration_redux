@@ -4,6 +4,9 @@ class Meal < ApplicationRecord
 
   SLOTS = ['Breakfast', 'Lunch', 'Dinner', 'Snack']
 
+  validates :edible, :slot, :amount, presence: true
+  validates :amount, numericality: true
+
   def edible_type_and_id=(type_and_id)
     type_and_id = type_and_id.split('//')
     self.edible_type = type_and_id.first

@@ -3,12 +3,11 @@
   .form-group
     = f.label :slot
     = f.select :slot,  Meal::SLOTS, {}, class: 'form-control'
-  .form-group
-    = f.label :edible
-    = f.select :edible_type_and_id,
-      grouped_options_for_select({ 'Recipes' => current_user.recipes.map { |r| [r.name, r.type_and_id] }, 'Foods' => current_user.foods.map { |f| [f.name, f.type_and_id] } }, @meal.edible_type_and_id),
-      {},
-      class: 'form-control'
+  = react_component 'EdibleSelect',
+    foods: current_user.foods,
+    recipes: current_user.recipes,
+    selectedTypeAndId: meal.edible_type_and_id,
+    url: foods_path(format: :json)
   .form-group
     = f.label :amount
     = f.text_field :amount, class: 'form-control'
